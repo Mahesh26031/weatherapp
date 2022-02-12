@@ -48,4 +48,36 @@ document.querySelector(".search-bar").addEventListener("keyup", function (event)
     }
   });
 
-  weather.fetchWeather("Delhi");
+
+
+//current location//  
+let api;
+if(navigator.geolocation){
+
+    navigator.geolocation.getCurrentPosition(onSuccess,onError)
+
+}else{
+    alert("Your browser doesnt support")
+}
+
+function onError(error)
+{
+    alert(error.message)
+}
+
+function onSuccess(position)
+{
+    const{latitude,longitude}=position.coords;
+    let api="https://api.openweathermap.org/data/2.5/weather?lat="+latitude+"&lon="+longitude+"&units=metric&appid="+weather.apiKey
+    fetch(
+        api
+      )
+        .then((response) => {
+          if (!response.ok) {
+            alert("No weather found.");
+            throw new Error("No weather found.");
+          }
+          return response.json();
+        })
+        .then((data) =>  weather.displayWeather(data));
+}
