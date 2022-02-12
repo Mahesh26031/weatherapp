@@ -28,6 +28,9 @@ let weather = {
         document.querySelector(".warmest").innerText = "Warmest : " + temp_max + "°C";
         document.querySelector(".weather").classList.remove("loading");
 
+        let todayDate = new Date();
+        document.getElementById('date').innerText=dateManage(todayDate);
+
      },
      search: function(){
         this.fetchWeather(document.querySelector(".search-bar").value);
@@ -80,4 +83,19 @@ function onSuccess(position)
           return response.json();
         })
         .then((data) =>  weather.displayWeather(data));
+}
+
+//get date//
+function dateManage(dateArg) {
+
+    let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    let year = dateArg.getFullYear();
+    let month = months[dateArg.getMonth()];
+    let date = dateArg.getDate();
+    let day = days[dateArg.getDay()];
+
+    return `${date} ${month} (${day}), ${year}`;
 }
