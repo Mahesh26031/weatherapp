@@ -34,23 +34,116 @@ let weather = {
      },
      search: function(){
         this.fetchWeather(document.querySelector(".search-bar").value);
+
      }
 
 };
 
+//local storage//
+function show(){
+let stored=localStorage.getItem('textinput')
+let ul=document.querySelector(".lis")
+
+if(stored==null){
+    listarr=[]
+}else{
+    listarr=JSON.parse(stored);
+}
+let newtag1=''
+if(listarr.length==0)
+{
+    newtag1+=`No recent searches`
+    ul.innerHTML=newtag1 
+   
+}
+
+if(listarr.length==1)
+{
+    newtag1+=` <li ><a onclick="change('${listarr[listarr.length-1]}')">${listarr[listarr.length-1]}</a><span class="close" onclick="deletetask(${listarr.length-1})">x</span></li>`
+
+    ul.innerHTML=newtag1
+
+}
+
+if(listarr.length==2)
+{
+    for(let i=1;i<=2;i++){
+    newtag1+=` <li><a onclick="change('${listarr[listarr.length-i]}')" >${listarr[listarr.length-i]}</a><span class="close" onclick="deletetask(${listarr.length-i})">x</span></li>`
+    ul.innerHTML=newtag1
+    }
+
+}
+
+if(listarr.length>2){
+for(let i=1;i<=3;i++){
+newtag1+=` <li><a onclick="change('${listarr[listarr.length-i]}')">${listarr[listarr.length-i]}</a><span class="close" onclick="deletetask(${listarr.length-i})">x</span></li>`
+ul.innerHTML=newtag1;
+}}
+
+}
+
+show()
+
+
+function change(city)
+{
+    weather.fetchWeather(city);
+}
+
+
+
+//delete span//
+function deletetask(index){
+    let stored=localStorage.getItem('textinput')
+    listarr=JSON.parse(stored);
+    listarr.splice(index,1);
+    localStorage.setItem('textinput',JSON.stringify(listarr))
+    show()
+
+}
+
+document.querySelector(".f button").addEventListener("click",function(){
+    listarr=[];
+    localStorage.setItem('textinput',JSON.stringify(listarr))
+    show()
+
+
+})
+
+
+
+
+//click event//
 document.querySelector(".search button").addEventListener("click",function(){
     weather.search();
-    document.querySelector(".search-bar").value=""
-    
+    let stored=localStorage.getItem('textinput')
+    if(stored==null){
+      listarr=[]
+    }else{
+      listarr=JSON.parse(stored);
+    }
+    listarr.push(document.querySelector(".search-bar").value)
+    localStorage.setItem('textinput',JSON.stringify(listarr))
+    show()
+    document.querySelector(".search-bar").value=""   
 })
 
 document.querySelector(".search-bar").addEventListener("keyup", function (event) {
     if (event.key == "Enter") {
       weather.search();
+      let stored=localStorage.getItem('textinput')
+      if(stored==null){
+        listarr=[]
+      }else{
+        listarr=JSON.parse(stored);
+      }  
+      listarr.push(document.querySelector(".search-bar").value)
+       localStorage.setItem('textinput',JSON.stringify(listarr))
+      show() 
       document.querySelector(".search-bar").value=""
+ 
     }
   });
-
 
 
 //current location//  
@@ -70,11 +163,10 @@ function onError(error)
 
 function onSuccess(position)
 {
-    const{latitude,longitude}=position.coords;
+    let latitude=position.coords.latitude;
+    let longitude=position.coords.longitude;
     let api="https://api.openweathermap.org/data/2.5/weather?lat="+latitude+"&lon="+longitude+"&units=metric&appid="+weather.apiKey
-    fetch(
-        api
-      )
+    fetch(api)
         .then((response) => {
           if (!response.ok) {
             alert("No weather found.");
@@ -97,5 +189,7 @@ function dateManage(dateArg) {
     let date = dateArg.getDate();
     let day = days[dateArg.getDay()];
 
-    return `${date} ${month} (${day}), ${year}`;
+    return ` ${day},${month} ${date}, ${year}`;
 }
+
+

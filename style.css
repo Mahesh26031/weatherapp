@@ -60,8 +60,8 @@ button {
   h1.temp {
     margin: 0;
     margin-top: 0.4em;
-    margin-bottom: 0.1em;
-    font-size: 2.8em;
+    margin-bottom: 0.05em;
+    font-size: 2.9em;
   }
 
   .description{
@@ -96,7 +96,7 @@ button {
 
 h2 {
   display: block;
-  font-size: 1.6em;
+  font-size: 1.7em;
   margin-block-start: 0.83em;
   margin-block-end: 0.4em;
   margin-inline-start: 0px;
@@ -108,3 +108,82 @@ h2 {
   font-size: 0.9em;
 }
 
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  margin-left: 8px;
+}
+
+ul li {
+  border: 1px solid #7c7c7c2b;
+  margin-top: -1px; 
+  background-color: #7c7c7c2b;
+  padding: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  color: white;
+  display: block;
+  position: relative;
+  width: 70%;
+  padding-left: 15px;
+  cursor: pointer;
+  
+ 
+}
+
+
+
+.close {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 0%;
+  padding: 12px 16px;
+  transform: translate(0%, -50%);
+  
+}
+
+.btn {
+ display: inline-block;
+ font-weight: 250;
+ color: #212529;
+ text-align: center;
+ vertical-align: middle;
+ background-color: transparent;
+ border: 1px solid transparent;
+ padding: 0.375rem 0.75rem;
+ font-size: 1rem;
+ line-height: 1.7;
+ border-radius: 0.25rem;
+ width: 30%;
+ transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+ 
+}
+
+.btn-outline-primary {
+ color:white;
+ border-color: #007bff;
+ 
+}
+
+.btn-outline-primary:hover {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+ 
+}
+
+
+.f{
+  display: flex;
+      align-items: center;
+      margin-bottom: 0.4em;
+      margin-left: 0.5rem;
+}
+
+.r{
+  margin-right: 8rem;
+}
+ 
