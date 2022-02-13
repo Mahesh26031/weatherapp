@@ -193,3 +193,24 @@ function dateManage(dateArg) {
 }
 
 
+//recent searches//
+const searchwrapper=document.querySelector(".search-bar")
+const a=document.querySelector(".search")
+
+searchwrapper.onkeyup=(e)=>{
+    userdata=e.target.value
+    if(userdata){
+
+    a.classList.add("active");
+
+    }
+    else{
+        a.classList.remove("active")
+    }
+    
+}
+
+
+
+
+
