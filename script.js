@@ -59,7 +59,7 @@ if(listarr.length==0)
 
 if(listarr.length==1)
 {
-    newtag1+=` <li ><a onclick="change('${listarr[listarr.length-1]}')">${listarr[listarr.length-1]}</a><span class="close" onclick="deletetask(${listarr.length-1})">x</span></li>`
+    newtag1+=` <li onclick="change('${listarr[listarr.length-1]}')"><a >${listarr[listarr.length-1]}</a><span class="close" onclick="deletetask(${listarr.length-1})">x</span></li>`
 
     ul.innerHTML=newtag1
 
@@ -68,7 +68,7 @@ if(listarr.length==1)
 if(listarr.length==2)
 {
     for(let i=1;i<=2;i++){
-    newtag1+=` <li><a onclick="change('${listarr[listarr.length-i]}')" >${listarr[listarr.length-i]}</a><span class="close" onclick="deletetask(${listarr.length-i})">x</span></li>`
+    newtag1+=` <li onclick="change('${listarr[listarr.length-i]}')"><a  >${listarr[listarr.length-i]}</a><span class="close" onclick="deletetask(${listarr.length-i})">x</span></li>`
     ul.innerHTML=newtag1
     }
 
@@ -76,7 +76,7 @@ if(listarr.length==2)
 
 if(listarr.length>2){
 for(let i=1;i<=3;i++){
-newtag1+=` <li><a onclick="change('${listarr[listarr.length-i]}')">${listarr[listarr.length-i]}</a><span class="close" onclick="deletetask(${listarr.length-i})">x</span></li>`
+newtag1+=` <li onclick="change('${listarr[listarr.length-i]}')"><a >${listarr[listarr.length-i]}</a><span class="close" onclick="deletetask(${listarr.length-i})">x</span></li>`
 ul.innerHTML=newtag1;
 }}
 
