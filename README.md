@@ -18,7 +18,7 @@ To run the weather app locally, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/weatherapp.git
+   git clone https://github.com/Mahesh26031/weatherapp
    cd weatherapp
    ```
 
